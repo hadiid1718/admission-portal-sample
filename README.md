@@ -853,25 +853,6 @@ For technical support or questions:
 
 ---
 
-## 📸 Screenshots
-
-### Homepage
-![Homepage](assets/images/screenshots/homepage.png)
-
-### Student Dashboard
-![Student Dashboard](assets/images/screenshots/student-dashboard.png)
-
-### Admin Dashboard
-![Admin Dashboard](assets/images/screenshots/admin-dashboard.png)
-
-### Merit List
-![Merit List](assets/images/screenshots/merit-list.png)
-
-### Fee Challan
-![Fee Challan](assets/images/screenshots/challan.png)
-
----
-
 ## 🎓 Educational Purpose
 
 This project is developed for educational purposes and demonstrates:
@@ -904,7 +885,7 @@ If you find this project helpful, please give it a star! ⭐
 
 ---
 
-**Last Updated:** January 2025 | **Version:** 1.0.0 | **Status:** Active Development 🚀
+**Last Updated:** November 2025 | **Version:** 1.0.0 | **Status:** Active Development 
 ```
 
 ---
