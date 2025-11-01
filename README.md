@@ -1,5 +1,4 @@
-Here's a comprehensive README.md file for your project:
-markdown# 🎓 Quaid-i-Azam University Admission Portal
+🎓 Quaid-i-Azam University Admission Portal
 
 A comprehensive web-based admission management system with separate modules for students and administrators. Built with PHP, MySQL, HTML, CSS, and JavaScript.
 
