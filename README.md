@@ -1,10 +1,10 @@
-🎓 Quaid-i-Azam University Admission Portal
+ Quaid-i-Azam University Admission Portal
 
 A comprehensive web-based admission management system with separate modules for students and administrators. Built with PHP, MySQL, HTML, CSS, and JavaScript.
 
 ![Project Banner](https://via.placeholder.com/1200x300/667eea/ffffff?text=QAU+Admission+Portal)
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -23,9 +23,9 @@ A comprehensive web-based admission management system with separate modules for 
 
 ---
 
-## ✨ Features
+##  Features
 
-### 🎯 Student Module
+###  Student Module
 
 - ✅ **User Registration**
   - Create account with personal details (Name, Email, CNIC, Phone, Address)
@@ -62,7 +62,7 @@ A comprehensive web-based admission management system with separate modules for 
   - Total: Rs. 82,352
   - Payment instructions included
 
-### 🔐 Admin Module
+###  Admin Module
 
 - ✅ **Admin Authentication**
   - Secure admin login
@@ -93,7 +93,7 @@ A comprehensive web-based admission management system with separate modules for 
   - Filter by status (Selected/Not Selected)
   - Export capabilities
 
-### 🌐 Public Pages
+###  Public Pages
 
 - ✅ **Homepage**
   - Hero slider with 3 slides
@@ -109,7 +109,7 @@ A comprehensive web-based admission management system with separate modules for 
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 | Category | Technology |
 |----------|------------|
@@ -122,7 +122,7 @@ A comprehensive web-based admission management system with separate modules for 
 
 ---
 
-## 💻 System Requirements
+##  System Requirements
 
 ### Minimum Requirements
 
@@ -143,7 +143,7 @@ A comprehensive web-based admission management system with separate modules for 
 
 ---
 
-## 📦 Installation Guide
+##  Installation Guide
 
 ### Step 1: Install XAMPP
 
@@ -300,7 +300,7 @@ Admin Portal:     http://localhost/university_admission/admin/login.php
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 ```
 university_admission/
 │
@@ -358,7 +358,7 @@ university_admission/
 
 ---
 
-## 🗄️ Database Schema
+##  Database Schema
 
 ### Tables Overview
 
@@ -398,7 +398,7 @@ application (1) ──→ (1) merit_list
 
 ---
 
-## 📖 User Guide
+##  User Guide
 
 ### For Students
 
@@ -462,7 +462,7 @@ application (1) ──→ (1) merit_list
 
 ---
 
-## 👨‍💼 Admin Guide
+##  Admin Guide
 
 ### Default Admin Credentials
 ```
@@ -521,7 +521,7 @@ Password: admin123
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Database Configuration
 
@@ -565,7 +565,7 @@ To modify, edit `student/generate_challan.php` (Lines 20-23)
 
 ---
 
-## 🔒 Security Features
+##  Security Features
 
 ### Implemented Security Measures
 
@@ -611,7 +611,7 @@ To modify, edit `student/generate_challan.php` (Lines 20-23)
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues & Solutions
 
@@ -711,7 +711,7 @@ If you encounter issues not listed here:
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -748,7 +748,7 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📝 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
@@ -777,14 +777,14 @@ SOFTWARE.
 
 ---
 
-## 📞 Contact
+##  Contact
 
 ### Project Maintainer
 
 **Your Name**
-- Email: your.email@example.com
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- Email: hadeed.hassan189@gmail.com
+- GitHub: [@hadiid1718](https://github.com/hadiid1718)
+- LinkedIn: [Hadeed ul Hassan](https://linkedin.com/in/hadeed-ul-hassan-b91453376)
 
 ### University Contact
 
@@ -892,7 +892,7 @@ If you find this project helpful, please give it a star! ⭐
 
 <div align="center">
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ by Hadeed Ul HAssan**
 
 [Report Bug](https://github.com/yourusername/project/issues) • [Request Feature](https://github.com/yourusername/project/issues) • [Documentation](https://github.com/yourusername/project/wiki)
 
