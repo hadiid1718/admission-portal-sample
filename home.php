@@ -8,7 +8,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quaid-i-Azam University - Admission Portal</title>
-    <link rel="stylesheet" href="./assets//css/home.css">
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </head>
 <body>
@@ -16,7 +18,7 @@ session_start();
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                🎓 Quaid-i-Azam University
+                 Quaid-i-Azam University
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -27,8 +29,27 @@ session_start();
                 <a href="/adv-web-project/university_admission/student/student_login.php" rel="noopener" class="btn-nav btn-student">Student Login</a>
                 <a href="/adv-web-project/university_admission/admin/admin_login.php" rel="noopener" class="btn-nav btn-admin">Admin Login</a>
             </div>
+ 
+                <ion-icon name="menu-outline" class="menu" id="menu"></ion-icon>
+     
         </div>
+                          
+            
     </nav>
+    <div class="model" id="model">
+        <div class="model-content">
+            <div class="btn-close" id="close">X</div>
+            <ul class="model-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="login-btns">
+                <a href="/adv-web-project/university_admission/student/student_login.php" class="btn-s-login">Student login</a>
+                <a href="/adv-web-project/university_admission/admin/admin_login.php" class="btn-a-login">Admin Login</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Slider -->
     <section class="hero-slider" id="home">
@@ -96,19 +117,25 @@ session_start();
 
             <div class="about-content">
                 <div class="about-card">
-                    <div class="about-icon">🎯</div>
+                    <div class="about-icon">
+                        <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+                    </div>
                     <h3>Our Mission</h3>
                     <p>To provide world-class education, foster research excellence, and contribute to national development through knowledge and innovation.</p>
                 </div>
 
                 <div class="about-card">
-                    <div class="about-icon">👁️</div>
+                    <div class="about-icon">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </div>
                     <h3>Our Vision</h3>
                     <p>To be recognized as a leading research university in Asia, known for academic excellence and groundbreaking discoveries.</p>
                 </div>
 
                 <div class="about-card">
-                    <div class="about-icon">⭐</div>
+                    <div class="about-icon">
+                        <ion-icon name="star-outline"></ion-icon>
+                    </div>
                     <h3>Our Values</h3>
                     <p>Academic integrity, research excellence, diversity, innovation, and commitment to serving society through education.</p>
                 </div>
@@ -221,52 +248,8 @@ session_start();
         </div>
     </footer>
 
-    <script>
-        // Slider functionality
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slider-dot');
+    <script src="./assets/script/home.js">
 
-        function showSlide(index) {
-            if (index >= slides.length) currentSlideIndex = 0;
-            if (index < 0) currentSlideIndex = slides.length - 1;
-
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-
-            slides[currentSlideIndex].classList.add('active');
-            dots[currentSlideIndex].classList.add('active');
-        }
-
-        function changeSlide(direction) {
-            currentSlideIndex += direction;
-            showSlide(currentSlideIndex);
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index;
-            showSlide(currentSlideIndex);
-        }
-
-        // Auto slide every 5 seconds
-        setInterval(() => {
-            currentSlideIndex++;
-            showSlide(currentSlideIndex);
-        }, 5000);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>

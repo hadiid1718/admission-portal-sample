@@ -48,10 +48,8 @@ $copies = array(
 
 </head>
 <body>
-    <div class="print-button-container no-print">
-        <button onclick="window.print()" class="print-btn">🖨️ Print Challan</button>
         <a href="view_merit.php" class="back-btn">← Back to Merit List</a>
-    </div>
+    
     
     <?php foreach ($copies as $copy_name => $color): ?>
         <div class="challan-page <?php echo $copy_name != 'Admin Copy' ? 'page-break' : ''; ?>">

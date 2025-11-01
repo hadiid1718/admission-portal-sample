@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="navbar">
-        <h1>🎓 Admission Portal</h1>
+        <h1> Admission Portal</h1>
         <a href="student_dashboard.php" class="back-btn">← Back to Dashboard</a>
     </div>
     

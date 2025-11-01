@@ -42,8 +42,8 @@ if ($my_merit) {
 </head>
 <body>
     <div class="navbar">
-        <h1>🏆 Merit List</h1>
-        <a href="student_dashboard.php" class="back-btn">← Back to Dashboard</a>
+        <h1> Merit List</h1>
+        <a href="student_dashboard.php" class="back-btn"> Back to Dashboard</a>
     </div>
     
     <div class="container">
@@ -51,7 +51,7 @@ if ($my_merit) {
             <div class="my-result-card <?php echo $my_merit['status'] == 'selected' ? 'result-selected' : 'result-not-selected'; ?>">
                 <h2>
                     <?php if ($my_merit['status'] == 'selected'): ?>
-                        🎉 Congratulations! You've been SELECTED
+                        Congratulations! You've been SELECTED
                     <?php else: ?>
                         Your Application Status
                     <?php endif; ?>
@@ -78,32 +78,14 @@ if ($my_merit) {
 
                 <?php if ($my_merit['status'] == 'selected'): ?>
                     <div class="challan-section">
-                        <h3 style="margin-bottom: 15px;">💰 Fee Payment</h3>
+                        <h3 style="margin-bottom: 15px;"> Fee Payment</h3>
                         <p style="margin-bottom: 10px;">Download your fee challan to complete the admission process</p>
                         
-                        <div class="fee-breakdown">
-                            <h4>Fee Structure:</h4>
-                            <div class="fee-item">
-                                <span>Tuition Fee:</span>
-                                <span>Rs. 31,086</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Service Charges:</span>
-                                <span>Rs. 21,266</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Admission Fee:</span>
-                                <span>Rs. 30,000</span>
-                            </div>
-                            <div class="fee-item">
-                                <span>Total Amount:</span>
-                                <span>Rs. 82,352</span>
-                            </div>
-                        </div>
+                    
 
                         <a href="generate_challan.php?student_id=<?php echo $student_id; ?>" 
                            class="challan-btn" target="_blank">
-                            📄 Generate Fee Challan (PDF)
+                            📄 Generate Fee Challan 
                         </a>
                     </div>
                 <?php endif; ?>
