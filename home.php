@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -170,9 +174,9 @@
 
                 <div class="contact-form">
                     <h3>Send us a Message</h3>
-                    <?php include 'contact_handler.php'; ?>
+                    <?php include './config/config.php'; ?>
                     
-                    <form method="POST" action="contact_handler.php">
+                    <form method="POST" action="./handler/contact_handler.php">
                         <div class="form-group">
                             <label>Your Name *</label>
                             <input type="text" name="name" required>
