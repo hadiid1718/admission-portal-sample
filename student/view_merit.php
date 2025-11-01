@@ -1,9 +1,13 @@
 <?php
-
-require_once 'config.php';
+require_once '../config/config.php';
 require_login();
 
 $student_id = $_SESSION['student_id'];
+
+// Get student details
+$student_query = "SELECT * FROM student WHERE id = $student_id";
+$student_result = mysqli_query($conn, $student_query);
+$student = mysqli_fetch_assoc($student_result);
 
 // Get merit list
 $query = "SELECT m.*, s.name, s.email, a.program_choice, a.matric_marks, a.inter_marks
@@ -17,7 +21,15 @@ $result = mysqli_query($conn, $query);
 $my_merit_query = "SELECT * FROM merit_list WHERE student_id = $student_id";
 $my_merit_result = mysqli_query($conn, $my_merit_query);
 $my_merit = mysqli_num_rows($my_merit_result) > 0 ? mysqli_fetch_assoc($my_merit_result) : null;
+
+// Get application details
+if ($my_merit) {
+    $app_query = "SELECT * FROM application WHERE student_id = $student_id";
+    $app_result = mysqli_query($conn, $app_query);
+    $application = mysqli_fetch_assoc($app_result);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,181 +37,13 @@ $my_merit = mysqli_num_rows($my_merit_result) > 0 ? mysqli_fetch_assoc($my_merit
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merit List - Admission Portal</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-        
-        .navbar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .navbar h1 {
-            font-size: 24px;
-        }
-        
-        .back-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        
-        .my-result-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        
-        .result-selected {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-        }
-        
-        .result-not-selected {
-            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
-            color: white;
-        }
-        
-        .my-result-card h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-        
-        .my-result-card .details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .my-result-card .detail-item {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 5px;
-        }
-        
-        .my-result-card .detail-item strong {
-            display: block;
-            font-size: 12px;
-            margin-bottom: 5px;
-            opacity: 0.9;
-        }
-        
-        .my-result-card .detail-item span {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .merit-list-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .merit-list-card h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        .search-box {
-            margin-bottom: 20px;
-        }
-        
-        .search-box input {
-            width: 100%;
-            max-width: 400px;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th {
-            background: #f8f9fa;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: #555;
-            border-bottom: 2px solid #dee2e6;
-            position: sticky;
-            top: 0;
-        }
-        
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #dee2e6;
-        }
-        
-        tr:hover {
-            background: #f8f9fa;
-        }
-        
-        .highlight-row {
-            background: #fff3cd !important;
-            font-weight: bold;
-        }
-        
-        .status-badge {
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .status-selected {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .status-not-selected {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
-        @media (max-width: 768px) {
-            table {
-                font-size: 12px;
-            }
-            
-            th, td {
-                padding: 8px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/studentcss/view-merit.css">  
+
 </head>
 <body>
     <div class="navbar">
-        <h1> Merit List</h1>
-        <a href="student_dashboard.php" class="back-btn"> Back to Dashboard</a>
+        <h1>🏆 Merit List</h1>
+        <a href="student_dashboard.php" class="back-btn">← Back to Dashboard</a>
     </div>
     
     <div class="container">
@@ -207,7 +51,7 @@ $my_merit = mysqli_num_rows($my_merit_result) > 0 ? mysqli_fetch_assoc($my_merit
             <div class="my-result-card <?php echo $my_merit['status'] == 'selected' ? 'result-selected' : 'result-not-selected'; ?>">
                 <h2>
                     <?php if ($my_merit['status'] == 'selected'): ?>
-                         Congratulations! You've been SELECTED
+                        🎉 Congratulations! You've been SELECTED
                     <?php else: ?>
                         Your Application Status
                     <?php endif; ?>
@@ -231,6 +75,38 @@ $my_merit = mysqli_num_rows($my_merit_result) > 0 ? mysqli_fetch_assoc($my_merit
                         <span style="font-size: 16px;"><?php echo date('M d, Y', strtotime($my_merit['published_at'])); ?></span>
                     </div>
                 </div>
+
+                <?php if ($my_merit['status'] == 'selected'): ?>
+                    <div class="challan-section">
+                        <h3 style="margin-bottom: 15px;">💰 Fee Payment</h3>
+                        <p style="margin-bottom: 10px;">Download your fee challan to complete the admission process</p>
+                        
+                        <div class="fee-breakdown">
+                            <h4>Fee Structure:</h4>
+                            <div class="fee-item">
+                                <span>Tuition Fee:</span>
+                                <span>Rs. 31,086</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Service Charges:</span>
+                                <span>Rs. 21,266</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Admission Fee:</span>
+                                <span>Rs. 30,000</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>Total Amount:</span>
+                                <span>Rs. 82,352</span>
+                            </div>
+                        </div>
+
+                        <a href="generate_challan.php?student_id=<?php echo $student_id; ?>" 
+                           class="challan-btn" target="_blank">
+                            📄 Generate Fee Challan (PDF)
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
         
@@ -238,7 +114,7 @@ $my_merit = mysqli_num_rows($my_merit_result) > 0 ? mysqli_fetch_assoc($my_merit
             <h2>Complete Merit List</h2>
             
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search by name, rank, or program...">
+                <input type="text" id="searchInput" placeholder="🔍 Search by name, rank, or program...">
             </div>
             
             <div style="overflow-x: auto;">

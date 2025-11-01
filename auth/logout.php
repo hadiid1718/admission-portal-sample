@@ -10,9 +10,9 @@ session_destroy();
 
 // Redirect to appropriate login page
 if ($is_admin) {
-    header("Location: admin_login.php?message=logged_out");
+    header("Location: ../admin/admin_login.php?message=logged_out");
 } else {
-    header("Location: student_login.php?message=logged_out");
+    header("Location: ../student/student_login.php?message=logged_out");
 }
 exit();
 ?>

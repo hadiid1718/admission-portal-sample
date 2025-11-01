@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.php';
+require_once '../config/config.php';
 require_login();
 
 $student_id = $_SESSION['student_id'];
@@ -66,143 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Application - Admission Portal</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-        
-        .navbar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .navbar h1 {
-            font-size: 24px;
-        }
-        
-        .back-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        
-        .form-card {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: 500;
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        
-        input:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .error {
-            background: #fee;
-            color: #c33;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #c33;
-        }
-        
-        .btn {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-            margin-right: 10px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        .btn-cancel {
-            background: #6c757d;
-        }
-        
-        .required {
-            color: red;
-        }
-        
-        .warning-box {
-            background: #fff3cd;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #ffc107;
-        }
-        
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/studentcss/update-application.css">
+
 </head>
 <body>
     <div class="navbar">

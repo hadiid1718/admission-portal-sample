@@ -1,0 +1,272 @@
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .print-button-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .print-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .back-btn {
+            padding: 15px 30px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .challan-page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 0 auto 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .university-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .university-details {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .copy-type {
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            border-radius: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .challan-title {
+            text-align: center;
+            font-size: 22px;
+            color: #2c3e50;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .info-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .info-label {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            width: 30%;
+        }
+        
+        .payment-ids {
+            background-color: #fff3cd;
+            border: 3px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .payment-id {
+            font-size: 16px;
+            margin: 8px 0;
+            font-weight: 600;
+        }
+        
+        .payment-note {
+            font-size: 12px;
+            margin-top: 12px;
+            color: #856404;
+            line-height: 1.5;
+        }
+        
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        .fee-table th {
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .fee-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        
+        .total-row {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .instructions {
+            background-color: #d1ecf1;
+            border-left: 5px solid #0c5460;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .instructions-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #0c5460;
+        }
+        
+        .instructions ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .signatures {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        
+        .signature-box {
+            text-align: center;
+            width: 200px;
+        }
+        
+        .signature-line {
+            border-top: 2px solid #000;
+            margin-bottom: 8px;
+            padding-top: 8px;
+        }
+        
+        .signature-label {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #999;
+            font-size: 11px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80px;
+            color: rgba(0,0,0,0.05);
+            font-weight: bold;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .challan-page {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            .print-button-container {
+                position: relative;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+    

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Delete existing admin
 mysqli_query($conn, "DELETE FROM admin WHERE username = 'admin'");
