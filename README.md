@@ -907,15 +907,7 @@ If you find this project helpful, please give it a star! ⭐
 
 ## 📝 **Additional Files to Create**
 
-### 1. **LICENSE** file:
-```
-MIT License
 
-Copyright (c) 2025 Hadeed Ul Hassan
-
-[Full MIT license text]
-2. CHANGELOG.md:
-markdown# Changelog
 
 ## [1.0.0] - 2025-01-XX
 
