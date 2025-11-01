@@ -911,7 +911,7 @@ If you find this project helpful, please give it a star! ⭐
 ```
 MIT License
 
-Copyright (c) 2025 Your Name
+Copyright (c) 2025 Hadeed Ul Hassan
 
 [Full MIT license text]
 2. CHANGELOG.md:
