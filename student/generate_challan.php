@@ -166,15 +166,8 @@ $copies = array(
         </div>
     <?php endforeach; ?>
     
-    <script>
-        // Auto-focus on print button when page loads
-        window.onload = function() {
-            document.querySelector('.print-btn').focus();
-        }
-        
-        // Optional: Show print dialog automatically
-        // Uncomment the line below if you want auto-print
-        // window.onload = function() { window.print(); }
+    <script src="../assets/script/student-script/generate-challan.js">
+
     </script>
 </body>
 </html>
