@@ -5,8 +5,8 @@ require_login();
 // Get student ID from URL
 $student_id = isset($_GET['student_id']) ? intval($_GET['student_id']) : $_SESSION['student_id'];
 
-// Get student details
-$student_query = "SELECT s.*, a.program_choice, m.rank, m.merit_score 
+// Get student details including time_category
+$student_query = "SELECT s.*, a.program_choice, a.time_category, m.rank, m.merit_score 
                   FROM student s
                   LEFT JOIN application a ON s.id = a.student_id
                   LEFT JOIN merit_list m ON s.id = m.student_id
@@ -23,11 +23,27 @@ $student = mysqli_fetch_assoc($result);
 $bill_id = 'QAU' . date('Y') . str_pad($student_id, 6, '0', STR_PAD_LEFT);
 $kuickpay_id = 'KP' . strtoupper(substr(md5($student_id . time()), 0, 10));
 
-// Fee details
-$tuition_fee = 31086;
-$service_charges = 21266;
+// Date calculations
+$issue_date = date('Y-m-d');
+$due_date = date('Y-m-d', strtotime($issue_date . ' + 5 days'));
+$formatted_issue_date = date('d-M-Y', strtotime($issue_date));
+$formatted_due_date = date('d-M-Y', strtotime($due_date));
+
+// Fee details based on time_category
+$service_charges = 21096;
 $admission_fee = 30000;
-$total_fee = 82352;
+
+// Determine tuition fee based on time category
+if ($student['time_category'] === 'Evening/Self Support' || $student['time_category'] === 'Evening') {
+    $tuition_fee = 88984;
+    $total_fee = 140080;
+    $fee_type = 'Evening/Self Support';
+} else {
+    // Default to Morning/Regular
+    $tuition_fee = 31260;
+    $total_fee = 82356;
+    $fee_type = 'Morning/Regular';
+}
 
 // Copies to generate
 $copies = array(
@@ -45,22 +61,29 @@ $copies = array(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fee Challan - <?php echo htmlspecialchars($student['name']); ?></title>
     <link rel="stylesheet" href="../assets//css//studentcss/challan-generation.css">
-
 </head>
 <body>
+    <div class="print-button-container no-print">
         <a href="view_merit.php" class="back-btn">← Back to Merit List</a>
+        <button onclick="window.print()" class="print-btn">🖨️ Print Challan</button>
+    </div>
     
-    
+    <div class="challan-container">
     <?php foreach ($copies as $copy_name => $color): ?>
         <div class="challan-page <?php echo $copy_name != 'Admin Copy' ? 'page-break' : ''; ?>">
             <div class="watermark">QAU</div>
             
             <div class="header" style="border-color: <?php echo $color; ?>">
-                <div class="university-name">🎓 QUAID-I-AZAM UNIVERSITY</div>
-                <div class="university-details">
-                    University Road, Islamabad, Pakistan<br>
-                    Ph: +92-51-90642100 | Email: admissions@qau.edu.pk<br>
-                    www.qau.edu.pk
+                <div class="university-name"> QUAID-I-AZAM UNIVERSITY</div>
+                <div class="header-ids">
+                    <div><strong>1Bill ID:</strong> <?php echo $bill_id; ?></div>
+                    <div><strong>KuickPay ID:</strong> <?php echo $kuickpay_id; ?></div>
+                </div>
+            </div>
+                  <div class="payment-ids">
+                <div class="payment-note">
+                    ⚠️ Use these IDs for online payment through Bank, 1-Link, ATMs, or mobile banking apps<br>
+                    <strong style="color: #d9534f;"> Valid until: <?php echo $formatted_due_date; ?> (5 days from issue)</strong>
                 </div>
             </div>
             
@@ -88,20 +111,20 @@ $copies = array(
                     <td colspan="3"><?php echo htmlspecialchars($student['program_choice']); ?></td>
                 </tr>
                 <tr>
+                    <td class="info-label">Fee Type:</td>
+                    <td><?php echo $fee_type; ?></td>
                     <td class="info-label">Session:</td>
                     <td><?php echo date('Y'); ?></td>
+                </tr>
+                <tr>
                     <td class="info-label">Issue Date:</td>
-                    <td><?php echo date('d-M-Y'); ?></td>
+                    <td><?php echo $formatted_issue_date; ?></td>
+                    <td class="info-label">Due Date:</td>
+                    <td><?php echo $formatted_due_date; ?></td>
                 </tr>
             </table>
             
-            <div class="payment-ids">
-                <div class="payment-id">📋 <strong>Bill ID:</strong> <?php echo $bill_id; ?></div>
-                <div class="payment-id">💳 <strong>KuickPay ID:</strong> <?php echo $kuickpay_id; ?></div>
-                <div class="payment-note">
-                    ⚠️ Use these IDs for online payment through Bank, 1-Link, ATMs, or mobile banking apps
-                </div>
-            </div>
+    
             
             <table class="fee-table">
                 <thead>
@@ -112,7 +135,7 @@ $copies = array(
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Tuition Fee</td>
+                        <td>Tuition Fee <?php echo $fee_type === 'Evening/Self Support' ? '(Self Support)' : '(Regular)'; ?></td>
                         <td style="text-align: right;"><?php echo number_format($tuition_fee); ?></td>
                     </tr>
                     <tr>
@@ -130,23 +153,6 @@ $copies = array(
                 </tbody>
             </table>
             
-            <div class="instructions">
-                <div class="instructions-title">📌 PAYMENT INSTRUCTIONS:</div>
-                <ul>
-                    <li>This challan is valid for <strong>15 days</strong> from the date of issue.</li>
-                    <li>Pay the <strong>exact amount</strong> mentioned above.</li>
-                    <li>Keep the bank receipt for your records.</li>
-                    <li><strong>Online Payment:</strong> Use Bill ID or KuickPay ID through:
-                        <ul>
-                            <li>Internet Banking • Mobile Banking Apps • ATM • 1-Link Kiosks</li>
-                        </ul>
-                    </li>
-                    <li><strong>Cash Payment:</strong> Visit any branch of designated banks with this challan.</li>
-                    <li>After payment, submit the paid challan to the <strong>Admission Office</strong>.</li>
-                    <li>Admission will be confirmed only after <strong>fee verification</strong>.</li>
-                </ul>
-            </div>
-            
             <div class="signatures">
                 <div class="signature-box">
                     <div class="signature-line"></div>
@@ -158,16 +164,11 @@ $copies = array(
                 </div>
             </div>
             
-            <div class="footer">
-                <strong>Generated on:</strong> <?php echo date('d-M-Y h:i A'); ?><br>
-                This is a computer-generated document. No signature is required.<br>
-                <strong>For queries, contact:</strong> admissions@qau.edu.pk | Ph: +92-51-90642100
-            </div>
+      
         </div>
     <?php endforeach; ?>
+    </div>
     
-    <script src="../assets/script/student-script/generate-challan.js">
-
-    </script>
+    <script src="../assets/script/student-script/generate-challan.js"></script>
 </body>
 </html>

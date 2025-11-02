@@ -35,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $inter_board = sanitize_input($_POST['inter_board']);
     $matric_year = intval($_POST['matric_year']);
     $inter_year = intval($_POST['inter_year']);
+    $program_level = sanitize_input($_POST['program_level']);
+    $time_category = sanitize_input($_POST['time_category']);
     $program_choice = sanitize_input($_POST['program_choice']);
     
     // Validation
@@ -68,6 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if ($inter_marks <= 0 || $inter_marks > 1100) {
         $errors[] = "Intermediate marks must be between 0 and 1100";
+    }
+    
+    if (empty($program_level)) {
+        $errors[] = "Please select a program level";
+    }
+    
+    if (empty($time_category)) {
+        $errors[] = "Please select a time category";
     }
     
     if (empty($program_choice)) {
@@ -132,14 +142,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             student_id, father_name, mother_name, date_of_birth, cnic, phone, 
             address, city, province, postal_code,
             matric_marks, inter_marks, matric_board, inter_board, 
-            matric_year, inter_year, program_choice, merit_score,
+            matric_year, inter_year, program_level, time_category, program_choice, merit_score,
             cnic_front, cnic_back, matric_result, inter_result, photo
         ) VALUES (
             $student_id, 
             '$father_name', '$mother_name', '$dob', '$cnic', '$phone',
             '$address', '$city', '$province', '$postal_code',
             $matric_marks, $inter_marks, '$matric_board', '$inter_board',
-            $matric_year, $inter_year, '$program_choice', $merit_score,
+            $matric_year, $inter_year, '$program_level', '$time_category', '$program_choice', $merit_score,
             '{$uploaded_files['cnic_front']}', '{$uploaded_files['cnic_back']}',
             '{$uploaded_files['matric_result']}', '{$uploaded_files['inter_result']}',
             '{$uploaded_files['photo']}'
@@ -162,141 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply for Admission - Admission Portal</title>
     <link rel="stylesheet" href="../assets/css/studentcss/admission-apply.css">
-    <style>
-        .step-indicator {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-        
-        .step {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            position: relative;
-        }
-        
-        .step::before {
-            content: attr(data-step);
-            display: block;
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 10px;
-            border-radius: 50%;
-            background: #ddd;
-            line-height: 40px;
-            font-weight: bold;
-            color: #666;
-        }
-        
-        .step.active::before {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        .step.completed::before {
-            background: #2196F3;
-            color: white;
-            content: '✓';
-        }
-        
-        .step::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            width: 100%;
-            height: 2px;
-            background: #ddd;
-            z-index: -1;
-        }
-        
-        .step:last-child::after {
-            display: none;
-        }
-        
-        .step.active::after,
-        .step.completed::after {
-            background: #4CAF50;
-        }
-        
-        .form-step {
-            display: none;
-        }
-        
-        .form-step.active {
-            display: block;
-        }
-        
-        .form-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        .file-upload-wrapper {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        
-        .file-upload-label {
-            display: block;
-            padding: 15px;
-            background: #f5f5f5;
-            border: 2px dashed #ddd;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .file-upload-label:hover {
-            border-color: #4CAF50;
-            background: #f9f9f9;
-        }
-        
-        .file-upload-label.has-file {
-            border-color: #4CAF50;
-            background: #e8f5e9;
-        }
-        
-        .file-preview {
-            margin-top: 10px;
-            text-align: center;
-        }
-        
-        .file-preview img {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .btn-secondary {
-            background: #757575;
-        }
-        
-        .btn-secondary:hover {
-            background: #616161;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .step span {
-                display: none;
-            }
-        }
-    </style>
+ 
 </head>
 <body>
     <div class="navbar">
@@ -453,15 +329,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     
                     <div class="form-group">
+                        <label>Program Level <span class="required">*</span></label>
+                        <select name="program_level" required>
+                            <option value="">Select Program Level</option>
+                            <option value="Undergraduate BS" <?php echo (isset($_POST['program_level']) && $_POST['program_level'] == 'Undergraduate BS') ? 'selected' : ''; ?>>Undergraduate BS</option>
+                            <option value="MPhil" <?php echo (isset($_POST['program_level']) && $_POST['program_level'] == 'MPhil') ? 'selected' : ''; ?>>MPhil</option>
+                            <option value="PhD" <?php echo (isset($_POST['program_level']) && $_POST['program_level'] == 'PhD') ? 'selected' : ''; ?>>PhD</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Time Category <span class="required">*</span></label>
+                        <select name="time_category" required>
+                            <option value="">Select Time Category</option>
+                            <option value="Morning/Regular" <?php echo (isset($_POST['time_category']) && $_POST['time_category'] == 'Morning/Regular') ? 'selected' : ''; ?>>Morning/Regular</option>
+                            <option value="Evening/Self Support" <?php echo (isset($_POST['time_category']) && $_POST['time_category'] == 'Evening/Self Support') ? 'selected' : ''; ?>>Evening/Self Support</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
                         <label>Program Choice <span class="required">*</span></label>
                         <select name="program_choice" required>
                             <option value="">Select a program</option>
-                            <option value="Computer Science" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Computer Science') ? 'selected' : ''; ?>>Computer Science</option>
-                            <option value="Software Engineering" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Software Engineering') ? 'selected' : ''; ?>>Software Engineering</option>
-                            <option value="Electrical Engineering" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Electrical Engineering') ? 'selected' : ''; ?>>Electrical Engineering</option>
-                            <option value="Mechanical Engineering" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Mechanical Engineering') ? 'selected' : ''; ?>>Mechanical Engineering</option>
-                            <option value="Business Administration" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Business Administration') ? 'selected' : ''; ?>>Business Administration</option>
+                            <option value="Anthropology" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Anthropology') ? 'selected' : ''; ?>>Anthropology</option>
+                            <option value="Archeology" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Archeology') ? 'selected' : ''; ?>>Archeology</option>
+                            <option value="BBA" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'BBA') ? 'selected' : ''; ?>>BBA</option>
+                            <option value="Bio Informatics" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Bio Informatics') ? 'selected' : ''; ?>>Bio Informatics</option>
+                            <option value="Botany" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Botany') ? 'selected' : ''; ?>>Botany</option>
+                            <option value="Chemistry" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Chemistry') ? 'selected' : ''; ?>>Chemistry</option>
+                            <option value="Computer Sciences" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Computer Sciences') ? 'selected' : ''; ?>>Computer Sciences</option>
+                            <option value="Economics" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Economics') ? 'selected' : ''; ?>>Economics</option>
+                            <option value="Electronics" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Electronics') ? 'selected' : ''; ?>>Electronics</option>
+                            <option value="English" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'English') ? 'selected' : ''; ?>>English</option>
+                            <option value="Environmental Sciences" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Environmental Sciences') ? 'selected' : ''; ?>>Environmental Sciences</option>
+                            <option value="Gender Studies" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Gender Studies') ? 'selected' : ''; ?>>Gender Studies</option>
+                            <option value="History" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'History') ? 'selected' : ''; ?>>History</option>
+                            <option value="Information Technology" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Information Technology') ? 'selected' : ''; ?>>Information Technology</option>
+                            <option value="International Relations" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'International Relations') ? 'selected' : ''; ?>>International Relations</option>
                             <option value="Mathematics" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Mathematics') ? 'selected' : ''; ?>>Mathematics</option>
+                            <option value="National Security" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'National Security') ? 'selected' : ''; ?>>National Security</option>
+                            <option value="NIPS" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'NIPS') ? 'selected' : ''; ?>>NIPS</option>
+                            <option value="Pharmacy" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Pharmacy') ? 'selected' : ''; ?>>Pharmacy</option>
+                            <option value="Physics" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Physics') ? 'selected' : ''; ?>>Physics</option>
+                            <option value="Plant Sciences" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Plant Sciences') ? 'selected' : ''; ?>>Plant Sciences</option>
+                            <option value="Psychology" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Psychology') ? 'selected' : ''; ?>>Psychology</option>
+                            <option value="Public Administration" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Public Administration') ? 'selected' : ''; ?>>Public Administration</option>
+                            <option value="Statistics" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'Statistics') ? 'selected' : ''; ?>>Statistics</option>
+                            <option value="TIAC" <?php echo (isset($_POST['program_choice']) && $_POST['program_choice'] == 'TIAC') ? 'selected' : ''; ?>>TIAC</option>
                         </select>
                     </div>
                 </div>

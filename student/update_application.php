@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $inter_board = sanitize_input($_POST['inter_board']);
     $matric_year = intval($_POST['matric_year']);
     $inter_year = intval($_POST['inter_year']);
+    $program_level = sanitize_input($_POST['program_level']);
+    $time_category = sanitize_input($_POST['time_category']);
     $program_choice = sanitize_input($_POST['program_choice']);
     
     // Validation
@@ -65,6 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if ($inter_marks <= 0 || $inter_marks > 1100) {
         $errors[] = "Intermediate marks must be between 0 and 1100";
+    }
+    
+    if (empty($program_level)) {
+        $errors[] = "Please select a program level";
+    }
+    
+    if (empty($time_category)) {
+        $errors[] = "Please select a time category";
     }
     
     if (empty($program_choice)) {
@@ -151,6 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                        inter_board = '$inter_board',
                        matric_year = $matric_year,
                        inter_year = $inter_year,
+                       program_level = '$program_level',
+                       time_category = '$time_category',
                        program_choice = '$program_choice',
                        merit_score = $merit_score,
                        cnic_front = '{$uploaded_files['cnic_front']}',
@@ -338,15 +350,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     
                     <div class="form-group">
+                        <label>Program Level <span class="required">*</span></label>
+                        <select name="program_level" required>
+                            <option value="">Select Program Level</option>
+                            <option value="Undergraduate BS" <?php echo ($application['program_level'] ?? '') == 'Undergraduate BS' ? 'selected' : ''; ?>>Undergraduate BS</option>
+                            <option value="MPhil" <?php echo ($application['program_level'] ?? '') == 'MPhil' ? 'selected' : ''; ?>>MPhil</option>
+                            <option value="PhD" <?php echo ($application['program_level'] ?? '') == 'PhD' ? 'selected' : ''; ?>>PhD</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Time Category <span class="required">*</span></label>
+                        <select name="time_category" required>
+                            <option value="">Select Time Category</option>
+                            <option value="Morning/Regular" <?php echo ($application['time_category'] ?? '') == 'Morning/Regular' ? 'selected' : ''; ?>>Morning/Regular</option>
+                            <option value="Evening/Self Support" <?php echo ($application['time_category'] ?? '') == 'Evening/Self Support' ? 'selected' : ''; ?>>Evening/Self Support</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
                         <label>Program Choice <span class="required">*</span></label>
                         <select name="program_choice" required>
                             <option value="">Select a program</option>
-                            <option value="Computer Science" <?php echo $application['program_choice'] == 'Computer Science' ? 'selected' : ''; ?>>Computer Science</option>
-                            <option value="Software Engineering" <?php echo $application['program_choice'] == 'Software Engineering' ? 'selected' : ''; ?>>Software Engineering</option>
-                            <option value="Electrical Engineering" <?php echo $application['program_choice'] == 'Electrical Engineering' ? 'selected' : ''; ?>>Electrical Engineering</option>
-                            <option value="Mechanical Engineering" <?php echo $application['program_choice'] == 'Mechanical Engineering' ? 'selected' : ''; ?>>Mechanical Engineering</option>
-                            <option value="Business Administration" <?php echo $application['program_choice'] == 'Business Administration' ? 'selected' : ''; ?>>Business Administration</option>
-                            <option value="Mathematics" <?php echo $application['program_choice'] == 'Mathematics' ? 'selected' : ''; ?>>Mathematics</option>
+                            <option value="Anthropology" <?php echo ($application['program_choice'] ?? '') == 'Anthropology' ? 'selected' : ''; ?>>Anthropology</option>
+                            <option value="Archeology" <?php echo ($application['program_choice'] ?? '') == 'Archeology' ? 'selected' : ''; ?>>Archeology</option>
+                            <option value="BBA" <?php echo ($application['program_choice'] ?? '') == 'BBA' ? 'selected' : ''; ?>>BBA</option>
+                            <option value="Bio Informatics" <?php echo ($application['program_choice'] ?? '') == 'Bio Informatics' ? 'selected' : ''; ?>>Bio Informatics</option>
+                            <option value="Botany" <?php echo ($application['program_choice'] ?? '') == 'Botany' ? 'selected' : ''; ?>>Botany</option>
+                            <option value="Chemistry" <?php echo ($application['program_choice'] ?? '') == 'Chemistry' ? 'selected' : ''; ?>>Chemistry</option>
+                            <option value="Computer Sciences" <?php echo ($application['program_choice'] ?? '') == 'Computer Sciences' ? 'selected' : ''; ?>>Computer Sciences</option>
+                            <option value="Economics" <?php echo ($application['program_choice'] ?? '') == 'Economics' ? 'selected' : ''; ?>>Economics</option>
+                            <option value="Electronics" <?php echo ($application['program_choice'] ?? '') == 'Electronics' ? 'selected' : ''; ?>>Electronics</option>
+                            <option value="English" <?php echo ($application['program_choice'] ?? '') == 'English' ? 'selected' : ''; ?>>English</option>
+                            <option value="Environmental Sciences" <?php echo ($application['program_choice'] ?? '') == 'Environmental Sciences' ? 'selected' : ''; ?>>Environmental Sciences</option>
+                            <option value="Gender Studies" <?php echo ($application['program_choice'] ?? '') == 'Gender Studies' ? 'selected' : ''; ?>>Gender Studies</option>
+                            <option value="History" <?php echo ($application['program_choice'] ?? '') == 'History' ? 'selected' : ''; ?>>History</option>
+                            <option value="Information Technology" <?php echo ($application['program_choice'] ?? '') == 'Information Technology' ? 'selected' : ''; ?>>Information Technology</option>
+                            <option value="International Relations" <?php echo ($application['program_choice'] ?? '') == 'International Relations' ? 'selected' : ''; ?>>International Relations</option>
+                            <option value="Mathematics" <?php echo ($application['program_choice'] ?? '') == 'Mathematics' ? 'selected' : ''; ?>>Mathematics</option>
+                            <option value="National Security" <?php echo ($application['program_choice'] ?? '') == 'National Security' ? 'selected' : ''; ?>>National Security</option>
+                            <option value="NIPS" <?php echo ($application['program_choice'] ?? '') == 'NIPS' ? 'selected' : ''; ?>>NIPS</option>
+                            <option value="Pharmacy" <?php echo ($application['program_choice'] ?? '') == 'Pharmacy' ? 'selected' : ''; ?>>Pharmacy</option>
+                            <option value="Physics" <?php echo ($application['program_choice'] ?? '') == 'Physics' ? 'selected' : ''; ?>>Physics</option>
+                            <option value="Plant Sciences" <?php echo ($application['program_choice'] ?? '') == 'Plant Sciences' ? 'selected' : ''; ?>>Plant Sciences</option>
+                            <option value="Psychology" <?php echo ($application['program_choice'] ?? '') == 'Psychology' ? 'selected' : ''; ?>>Psychology</option>
+                            <option value="Public Administration" <?php echo ($application['program_choice'] ?? '') == 'Public Administration' ? 'selected' : ''; ?>>Public Administration</option>
+                            <option value="Statistics" <?php echo ($application['program_choice'] ?? '') == 'Statistics' ? 'selected' : ''; ?>>Statistics</option>
+                            <option value="TIAC" <?php echo ($application['program_choice'] ?? '') == 'TIAC' ? 'selected' : ''; ?>>TIAC</option>
                         </select>
                     </div>
                 </div>
