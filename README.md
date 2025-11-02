@@ -40,7 +40,7 @@ A comprehensive web-based admission management system with separate modules for 
 
 - ✅ **Admission Application**
   - Submit application with academic details
-  - Fields: Matric marks, Intermediate marks, Program choice, Father's name, DOB
+  - Fields: Matric marks, Intermediate marks, Program choice, Father's name, DOB, profram level, time category
   - Automatic merit score calculation
   - Real-time form validation
 
@@ -54,13 +54,14 @@ A comprehensive web-based admission management system with separate modules for 
   - Check personal ranking and status
   - Search and filter functionality
   - Highlight own result
+  
 
 - ✅ **Fee Challan Generation**
   - Generate printable fee challan (4 copies)
   - Unique Bill ID and KuickPay ID for online payment
-  - Detailed fee breakdown (Tuition: Rs. 31,086, Service: Rs. 21,266, Admission: Rs. 30,000)
-  - Total: Rs. 82,352
-  - Payment instructions included
+  - Detailed fee breakdown Morning/Reguler (Tuition: Rs. 31,086, Service: Rs. 21,266, Admission: Rs. 30,000)
+  - Challan will be generated different for Reguler and self support
+  
 
 ###  Admin Module
 
@@ -105,7 +106,6 @@ A comprehensive web-based admission management system with separate modules for 
   - Contact form with backend integration
   - Contact information display
   - Form validation
-  - Email notifications
 
 ---
 
