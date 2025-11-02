@@ -2,7 +2,7 @@
 
 A comprehensive web-based admission management system with separate modules for students and administrators. Built with PHP, MySQL, HTML, CSS, and JavaScript.
 
-![Project Banner](https://via.placeholder.com/1200x300/667eea/ffffff?text=QAU+Admission+Portal)
+![Project Banner]("C:\Users\Lenovo\Desktop\Images\Home-page.png")
 
 ##  Table of Contents
 
