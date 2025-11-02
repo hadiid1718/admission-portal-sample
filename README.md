@@ -2,7 +2,7 @@
 
 A comprehensive web-based admission management system with separate modules for students and administrators. Built with PHP, MySQL, HTML, CSS, and JavaScript.
 
-![Project Banner]("C:\Users\Lenovo\Desktop\Images\Home-page.png")
+![Project Banner](university_admission\assets\image\Home-page.png)
 
 ##  Table of Contents
 
@@ -220,8 +220,9 @@ CREATE TABLE IF NOT EXISTS application (
      cnic_back VARCHAR(255),
      matric_result VARCHAR(255),
      inter_result VARCHAR(255);
+     program_type VARCHAR(50);
+     time_category VARCHAR(50)
     status ENUM('pending', 'under_review', 'selected', 'not_selected') DEFAULT 'pending',
-    merit_score DECIMAL(5,2),
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES student(id) ON DELETE CASCADE
@@ -355,6 +356,16 @@ university_admission/
 │
 └── README.md                          # This file
 ```
+
+---
+## Screen Shots
+[home](university_admission\assets\image\Home-page.png)
+[merit-view](university_admission\assets\image\merit_list.png)
+[admin-dashboard](D:\xampp\htdocs\adv-web-project\university_admission\assets\image\admin-dashboard.png)
+[student-dashboard](university_admission\assets\image\student-dashboard.png)
+[admin-merit-list-view](university_admission\assets\image\merit-list-admin-view.png)
+[update-application](university_admission\assets\image\update-application.png)
+[challan-generation](university_admission\assets\image\challan-generation.png)
 
 ---
 
