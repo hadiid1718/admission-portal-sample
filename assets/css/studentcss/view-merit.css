@@ -247,3 +247,134 @@ tr:hover {
     grid-template-columns: 1fr;
   }
 }
+/* Filter Section Styles */
+.filter-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.filter-group label {
+  color: #2c3e50;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.filter-group select {
+  flex: 1;
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.filter-group select:hover {
+  border-color: #3498db;
+}
+
+.filter-group select:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.search-box {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Time Category Badge Styles */
+.time-category-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.time-category-badge.morning-regular {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #90caf9;
+}
+
+.time-category-badge.evening-self-support {
+  background-color: #fff3e0;
+  color: #f57c00;
+  border: 1px solid #ffb74d;
+}
+
+/* Update detail items for better layout */
+.details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.detail-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-item strong {
+  font-size: 13px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-item span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+  }
+  
+  .filter-group,
+  .search-box {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .details {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Table responsive improvements */
+@media screen and (max-width: 992px) {
+  #meritTable {
+    font-size: 13px;
+  }
+  
+  #meritTable th,
+  #meritTable td {
+    padding: 10px 8px;
+  }
+}

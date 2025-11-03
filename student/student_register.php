@@ -8,11 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitize inputs
     $name = sanitize_input($_POST['name']);
     $email = sanitize_input($_POST['email']);
+    $cnic = sanitize_input($_POST['cnic']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    $cnic = sanitize_input($_POST['cnic']);
-    $phone = sanitize_input($_POST['phone']);
-    $address = sanitize_input($_POST['address']);
+
     
     // Validation
     if (empty($name)) {
@@ -30,10 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($password !== $confirm_password) {
         $errors[] = "Passwords do not match";
     }
-    
-    if (empty($cnic) || !validate_cnic($cnic)) {
+        if (empty($cnic) || !validate_cnic($cnic)) {
         $errors[] = "Valid CNIC format required (e.g., 12345-1234567-1)";
     }
+    
+  
     
     // Check if email already exists
     if (empty($errors)) {
@@ -43,8 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors[] = "Email already registered";
         }
     }
-    
-    // Check if CNIC already exists
+        // Check if CNIC already exists
     if (empty($errors)) {
         $check_cnic = "SELECT id FROM student WHERE cnic = '$cnic'";
         $result = mysqli_query($conn, $check_cnic);
@@ -52,19 +51,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors[] = "CNIC already registered";
         }
     }
+
+    
+
     
     // Insert into database
-    if (empty($errors)) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO student (name, email, password, cnic, phone, address) 
-                VALUES ('$name', '$email', '$hashed_password', '$cnic', '$phone', '$address')";
-        
-        if (mysqli_query($conn, $sql)) {
-            $success = "Registration successful! You can now login.";
-        } else {
-            $errors[] = "Registration failed: " . mysqli_error($conn);
-        }
+// Insert into database
+if (empty($errors)) {
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO student (name, email, cnic, password) 
+            VALUES ('$name', '$email','$cnic' , '$hashed_password')";
+
+    if (mysqli_query($conn, $sql)) {
+        $success = "Registration successful! You can now login.";
+    } else {
+        $errors[] = "Registration failed: " . mysqli_error($conn);
     }
+}
+
 }
 ?>
 
@@ -105,25 +110,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label>Email Address <span class="required">*</span></label>
                 <input type="email" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
             </div>
-            
-            <div class="form-group">
+                        <div class="form-group">
                 <label>CNIC <span class="required">*</span></label>
                 <input type="text" name="cnic" placeholder="12345-1234567-1" required 
                        pattern="[0-9]{5}-[0-9]{7}-[0-9]" 
                        value="<?php echo isset($_POST['cnic']) ? htmlspecialchars($_POST['cnic']) : ''; ?>">
                 <small style="color: #666;">Format: 12345-1234567-1</small>
             </div>
+
             
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" name="phone" placeholder="0300-1234567" 
-                       value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>">
-            </div>
-            
-            <div class="form-group">
-                <label>Address</label>
-                <textarea name="address"><?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?></textarea>
-            </div>
+
             
             <div class="form-group">
                 <label>Password <span class="required">*</span></label>

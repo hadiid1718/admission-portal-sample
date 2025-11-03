@@ -15,3 +15,12 @@
                 }
             }
         });
+             function filterByProgram(program) {
+            window.location.href = 'view_merit.php?program=' + encodeURIComponent(program);
+        }
+      
+                function filterByMeritList(meritListNumber) {
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('merit_list', meritListNumber);
+            window.location.search = urlParams.toString();
+        }
