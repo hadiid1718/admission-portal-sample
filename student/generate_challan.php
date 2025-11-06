@@ -82,7 +82,7 @@ $copies = array(
             </div>
                   <div class="payment-ids">
                 <div class="payment-note">
-                    ⚠️ Use these IDs for online payment through Bank, 1-Link, ATMs, or mobile banking apps<br>
+                    Important: Use these IDs for online payment through Bank, 1-Link, ATMs, or mobile banking apps<br>
                     <strong style="color: #d9534f;"> Valid until: <?php echo $formatted_due_date; ?> (5 days from issue)</strong>
                 </div>
             </div>

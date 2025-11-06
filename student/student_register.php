@@ -78,65 +78,70 @@ if (empty($errors)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration - Admission Portal</title>
+    <title>Student Registration</title>
     <link rel="stylesheet" href="../assets/css/studentcss/student-register.css">
 </head>
 <body>
+    
     <div class="container">
-        <h2>Create Student Account</h2>
-        <p class="subtitle">Register to apply for admission</p>
-        
-        <?php if (!empty($errors)): ?>
-            <div class="error">
-                <?php foreach ($errors as $error): ?>
-                    <p>• <?php echo $error; ?></p>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-        
-        <?php if ($success): ?>
-            <div class="success">
-                <p><?php echo $success; ?></p>
-            </div>
-        <?php endif; ?>
-        
-        <form method="POST" action="" id="registerForm">
-            <div class="form-group">
-                <label>Full Name <span class="required">*</span></label>
-                <input type="text" name="name" required value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
+        <div class="register-box">
+            <div class="header">
+                <h2>Create Student Account</h2>
+                <p>Register to apply for admission</p>
             </div>
             
-            <div class="form-group">
-                <label>Email Address <span class="required">*</span></label>
-                <input type="email" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
-            </div>
-                        <div class="form-group">
-                <label>CNIC <span class="required">*</span></label>
-                <input type="text" name="cnic" placeholder="12345-1234567-1" required 
-                       pattern="[0-9]{5}-[0-9]{7}-[0-9]" 
-                       value="<?php echo isset($_POST['cnic']) ? htmlspecialchars($_POST['cnic']) : ''; ?>">
-                <small style="color: #666;">Format: 12345-1234567-1</small>
-            </div>
+            <?php if (!empty($errors)): ?>
+                <div class="error-message">
+                    <?php foreach ($errors as $error): ?>
+                        <p>• <?php echo $error; ?></p>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($success): ?>
+                <div class="success-message">
+                    <p><?php echo $success; ?></p>
+                </div>
+            <?php endif; ?>
+                
+            <form method="POST" action="" id="registerForm">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" name="name" required 
+                           value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" name="email" required 
+                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>CNIC <span class="required">*</span></label>
+                    <input type="text" name="cnic" placeholder="12345-1234567-1" required 
+                           pattern="[0-9]{5}-[0-9]{7}-[0-9]"
+                           value="<?php echo isset($_POST['cnic']) ? htmlspecialchars($_POST['cnic']) : ''; ?>">
+                    <p class="format-hint">Format: 12345-1234567-1</p>
+                </div>
 
+                <div class="form-group">
+                    <label>Password <span class="required">*</span></label>
+                    <input type="password" name="password" required minlength="6">
+                    <p class="format-hint">Minimum 6 characters</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirm Password <span class="required">*</span></label>
+                    <input type="password" name="confirm_password" required minlength="6">
+                </div>
+                
+                <button type="submit">Register</button>
+            </form>
             
-
-            
-            <div class="form-group">
-                <label>Password <span class="required">*</span></label>
-                <input type="password" name="password" required minlength="6">
-                <small style="color: #666;">Minimum 6 characters</small>
+            <div class="login-link">
+                <p>Already have an account? <a href="student_login.php">Login here</a></p>
             </div>
-            
-            <div class="form-group">
-                <label>Confirm Password <span class="required">*</span></label>
-                <input type="password" name="confirm_password" required minlength="6">
-            </div>
-            
-            <button type="submit" class="btn">Register</button>
-        </form>
-        
-        <div class="links">
-            Already have an account? <a href="student_login.php">Login here</a>
         </div>
     </div>
     

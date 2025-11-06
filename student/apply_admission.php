@@ -170,34 +170,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply for Admission - Admission Portal</title>
+    <title>Apply for Admission</title>
     <link rel="stylesheet" href="../assets/css/studentcss/admission-apply.css">
- 
 </head>
 <body>
-    <div class="navbar">
-        <h1>Admission Portal</h1>
-        <a href="student_dashboard.php" class="back-btn">← Back to Dashboard</a>
-    </div>
+    <?php include '../includes/Navbar.php'; ?>
     
     <div class="container">
-        <div class="form-card">
-            <h2>Apply for Admission</h2>
-            <p class="subtitle">Complete all steps to submit your application</p>
+        <div class="content">
+            <div class="header">
+                <h2>Apply for Admission</h2>
+                <p>Complete all steps to submit your application</p>
+            </div>
             
             <!-- Step Indicator -->
             <div class="step-indicator">
-                <div class="step active" data-step="1">
-                    <span>Personal Info</span>
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <span class="step-title">Personal Info</span>
                 </div>
-                <div class="step" data-step="2">
-                    <span>Academic Info</span>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <span class="step-title">Academic Info</span>
                 </div>
-                <div class="step" data-step="3">
-                    <span>Documents</span>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span class="step-title">Documents</span>
                 </div>
-                <div class="step" data-step="4">
-                    <span>Review</span>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <span class="step-title">Review</span>
                 </div>
             </div>
             
@@ -209,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             <?php endif; ?>
             
-            <form method="POST" action="" id="applicationForm" enctype="multipart/form-data">
+            <form method="POST" action="" enctype="multipart/form-data" class="application-form">
                 <!-- Step 1: Personal Information -->
                 <div class="form-step active" data-step="1">
                     <h3>Personal Information</h3>
@@ -221,23 +223,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                    value="<?php echo isset($_POST['father_name']) ? htmlspecialchars($_POST['father_name']) : ''; ?>">
                         </div>
                         
-                        <div class="form-group">
-                            <label>Mother's Name <span class="required">*</span></label>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Mother's Name <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="mother_name" required 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                                    value="<?php echo isset($_POST['mother_name']) ? htmlspecialchars($_POST['mother_name']) : ''; ?>">
                         </div>
                     </div>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Date of Birth <span class="required">*</span></label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Date of Birth <span class="text-red-500">*</span>
+                            </label>
                             <input type="date" name="dob" required max="<?php echo date('Y-m-d', strtotime('-15 years')); ?>"
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                                    value="<?php echo isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : ''; ?>">
                         </div>
                         
-                        <div class="form-group">
-                            <label>CNIC <span class="required">*</span></label>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                CNIC <span class="text-red-500">*</span>
+                            </label>
                             <input type="text" name="cnic" required pattern="\d{5}-\d{7}-\d{1}" 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                                    placeholder="12345-1234567-1"
                                    value="<?php echo isset($_POST['cnic']) ? htmlspecialchars($_POST['cnic']) : ''; ?>">
                         </div>
@@ -275,13 +286,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Postal Code</label>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">
+                            Postal Code
+                        </label>
                         <input type="text" name="postal_code" pattern="\d{5}" placeholder="12345"
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
                                value="<?php echo isset($_POST['postal_code']) ? htmlspecialchars($_POST['postal_code']) : ''; ?>">
                     </div>
                 </div>
                 
+                <!-- Step 2: Academic Information -->
                 <!-- Step 2: Academic Information -->
                 <div class="form-step" data-step="2">
                     <h3>Academic Information</h3>

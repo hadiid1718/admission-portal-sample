@@ -146,7 +146,7 @@ $result = mysqli_query($conn, $query);
                 </div>
                 
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="🔍 Search by name, rank, or program...">
+                    <input type="text" id="searchInput" placeholder="Search by name, rank, or program...">
                 </div>
             </div>
             

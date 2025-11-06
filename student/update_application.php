@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="subtitle">Modify your application details</p>
             
             <div class="warning-box">
-                <strong>⚠️ Important:</strong> Any changes you make will recalculate your merit score. Make sure all information is accurate before updating.
+                <strong>Important:</strong> Any changes you make will recalculate your merit score. Make sure all information is accurate before updating.
             </div>
             
             <!-- Step Indicator -->

@@ -1,5 +1,8 @@
 <?php
 session_start();
+// Check login status
+$isStudentLoggedIn = isset($_SESSION['student_id']) || isset($_SESSION['student_logged_in']);
+$isAdminLoggedIn = isset($_SESSION['admin_id']) || isset($_SESSION['admin_logged_in']);
 ?>
 
 <!DOCTYPE html>
@@ -15,27 +18,37 @@ session_start();
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                 Quaid-i-Azam University
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="login-buttons">
+     <nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+             Quaid-i-Azam University
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="login-buttons">
+            <?php if ($isStudentLoggedIn): ?>
+                <!-- Student is logged in -->
+                <a href="/adv-web-project/university_admission/student/student_dashboard.php" rel="noopener" class="btn-nav btn-student">Dashboard</a>
+                <a href="/adv-web-project/university_admission/auth/logout.php" rel="noopener" class="btn-nav btn-logout">Logout</a>
+            <?php elseif ($isAdminLoggedIn): ?>
+                <!-- Admin is logged in -->
+                <a href="/adv-web-project/university_admission/admin/admin_dashboard.php" rel="noopener" class="btn-nav btn-admin">Dashboard</a>
+                <a href="/adv-web-project/university_admission/admin/admin_logout.php" rel="noopener" class="btn-nav btn-logout">Logout</a>
+            <?php else: ?>
+                <!-- No one is logged in -->
                 <a href="/adv-web-project/university_admission/student/student_login.php" rel="noopener" class="btn-nav btn-student">Student Login</a>
                 <a href="/adv-web-project/university_admission/admin/admin_login.php" rel="noopener" class="btn-nav btn-admin">Admin Login</a>
-            </div>
- 
-                <ion-icon name="menu-outline" class="menu" id="menu"></ion-icon>
-     
+            <?php endif; ?>
         </div>
-                          
-            
-    </nav>
+ 
+        <ion-icon name="menu-outline" class="menu" id="menu"></ion-icon>
+     
+            </div>
+</nav>
+
     <div class="model" id="model">
         <div class="model-content">
             <div class="btn-close" id="close">X</div>
@@ -236,17 +249,7 @@ session_start();
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 Quaid-i-Azam University. All Rights Reserved.</p>
-        <p>Empowering minds, Transforming futures</p>
-        <div class="footer-links">
-            <a href="../university_admission/student/student_login.php" rel="noopener">Student Portal</a>
-            <a href="../university_admission/admin/admin_login.php" rel="noopener">Admin Portal</a>
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </footer>
+        <?php include "../university_admission/includes/Footer.php" ?>
 
     <script src="./assets/script/home.js">
 

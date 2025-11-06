@@ -27,18 +27,18 @@ A comprehensive web-based admission management system with separate modules for 
 
 ###  Student Module
 
-- ✅ **User Registration**
+- [x] **User Registration**
   - Create account with personal details (Name, Email, CNIC, Phone, Address)
   - Password encryption with bcrypt hashing
   - Email and CNIC validation
   - Duplicate entry prevention
 
-- ✅ **Secure Login System**
+- [x] **Secure Login System**
   - Session-based authentication
   - Password verification
   - Error handling with user-friendly messages
 
-- ✅ **Admission Application**
+- [x] **Admission Application**
   - Submit application with academic details
   - Fields: Matric marks, Intermediate marks, Program choice, Father's name, DOB, profram level, time category
   - Automatic merit score calculation
@@ -481,7 +481,7 @@ Username: admin
 Password: admin123
 ```
 
-⚠️ **Important:** Change default password after first login!
+**Important:** Change default password after first login!
 
 ### Admin Functions
 
@@ -580,33 +580,33 @@ To modify, edit `student/generate_challan.php` (Lines 20-23)
 
 ### Implemented Security Measures
 
-✅ **Password Security**
+[x] **Password Security**
 - Passwords hashed using `password_hash()` with bcrypt
 - Verification using `password_verify()`
 - Minimum 6 characters required
 
-✅ **SQL Injection Prevention**
+[x] **SQL Injection Prevention**
 - All inputs sanitized using `mysqli_real_escape_string()`
 - Prepared statements recommended for production
 
-✅ **XSS Protection**
+[x] **XSS Protection**
 - All outputs escaped using `htmlspecialchars()`
 - Input sanitization with `strip_tags()`
 
-✅ **CNIC Validation**
+[x] **CNIC Validation**
 - Format: 12345-1234567-1
 - Regex pattern validation
 
-✅ **Email Validation**
+[x] **Email Validation**
 - PHP `filter_var()` with `FILTER_VALIDATE_EMAIL`
 - Duplicate email prevention
 
-✅ **Session Management**
+[x] **Session Management**
 - Secure session handling
 - Session timeout after inactivity
 - Logout functionality
 
-✅ **CSRF Protection** (Recommended to add)
+[x] **CSRF Protection** (Recommended to add)
 - Add CSRF tokens to forms in production
 
 ### Security Best Practices
@@ -816,7 +816,7 @@ For technical support or questions:
 
 ## 🎯 Roadmap
 
-### Version 1.0 (Current) ✅
+### Version 1.0 (Current)
 - [x] Student registration and login
 - [x] Application submission and update
 - [x] Merit list generation and viewing
@@ -869,8 +869,8 @@ For technical support or questions:
 
 | Feature | Student | Admin |
 |---------|---------|-------|
-| Registration | ✅ | ❌ |
-| Login | ✅ | ✅ |
+| Registration | [x] | [ ] |
+| Login | [x] | [x] |
 | Dashboard | ✅ | ✅ |
 | Application | ✅ | View Only |
 | Merit List | View | Generate & View |
