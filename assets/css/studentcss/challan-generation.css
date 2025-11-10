@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  background: #f5f5f5;
+  padding: 20px;
+}
+
+.print-button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.print-btn {
+  padding: 15px 30px;
+  background: rgb(81, 227, 81);
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.print-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn {
+  padding: 15px 30px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+/* Container for all challans in a row */
+.challan-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.challan-page {
+  display: block;
+  width: 24%;
+  min-width: 280px;
+  max-width: 320px;
+  padding: 10px;
+  margin: 0;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.header {
+  text-align: center;
+  border-bottom: 2px solid;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.university-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.university-details {
+  font-size: 8px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.header-ids {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 5px;
+  font-size: 7px;
+  color: #2c3e50;
+  flex-wrap: wrap;
+}
+
+.header-ids div {
+  background-color: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #dee2e6;
+}
+
+.copy-type {
+  color: white;
+  padding: 5px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 8px 0;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.challan-title {
+  text-align: center;
+  font-size: 11px;
+  color: #2c3e50;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: 7px;
+}
+
+.info-table td {
+  padding: 3px;
+  border: 1px solid #ddd;
+}
+
+.info-label {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  width: 30%;
+}
+
+.payment-ids {
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  padding: 6px;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+
+.payment-id {
+  font-size: 9px;
+  margin: 4px 0;
+  font-weight: 600;
+  display: none;
+}
+
+.payment-note {
+  font-size: 6px;
+  margin-top: 4px;
+  color: #856404;
+  line-height: 1.3;
+}
+
+.fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: 7px;
+}
+
+.fee-table th {
+  color: white;
+  padding: 4px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 7px;
+}
+
+.fee-table td {
+  padding: 4px;
+  border: 1px solid #ddd;
+}
+
+.total-row {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  font-size: 8px;
+}
+
+.instructions {
+  background-color: #d1ecf1;
+  border-left: 3px solid #0c5460;
+  padding: 8px;
+  margin: 12px 0;
+  border-radius: 3px;
+  display: none;
+}
+
+.instructions-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 9px;
+  color: #0c5460;
+}
+
+.instructions ul {
+  margin-left: 15px;
+  line-height: 1.4;
+  font-size: 7px;
+}
+
+.instructions li {
+  font-size: 7px;
+  margin-bottom: 2px;
+}
+
+.signatures {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.signature-box {
+  text-align: center;
+  width: 80px;
+}
+
+.signature-line {
+  border-top: 1px solid #000;
+  margin-bottom: 3px;
+  padding-top: 3px;
+}
+
+.signature-label {
+  font-weight: bold;
+  font-size: 6px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 15px;
+  padding-top: 8px;
+  border-top: 1px dashed #999;
+  font-size: 6px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.03);
+  font-weight: bold;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .challan-page {
+    width: 100%;
+    min-width: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .challan-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .challan-page {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .print-button-container {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .back-btn,
+  .print-button-container {
+    display: none !important;
+  }
+
+  .challan-container {
+    display: block;
+  }
+
+  .challan-page {
+    box-shadow: none;
+    margin: 0;
+    page-break-inside: avoid;
+    width: 100%;
+    min-width: auto;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+}
